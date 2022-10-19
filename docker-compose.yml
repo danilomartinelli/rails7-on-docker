@@ -14,8 +14,14 @@ services:
     depends_on:
       - db
       - redis
+  tailwind:
+    build: .
+    command: bash -c "bin/rails tailwindcss:watch"
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
   db:
-    image: postgres:14
+    image: postgres:15
     ports:
       - "5432:5432"
     environment:
